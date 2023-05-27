@@ -3,7 +3,29 @@
 
 {% block content%}
 
-<h1>Hello World</h1>
+<h1>Hello!!</h1>
+
+<pre>
+	<code class=' line-numbers language-python'>
+		if 
+	</code>
+</pre>
+<br/><br/>
+
+<form method=POST action="{% url 'home' %}">
+	{% csrf_token %}
+
+  <div class="form-group">
+    <textarea class="form-control" name="code" placeholder="Fix my code" rows="3"></textarea>
+  </div>
+
+  <select class="form-control">
+  	<option>Default select</option>
+  </select>
+  <br/>
+  <button type="submit" class="btn btn-dark">Submit</button>
+
+</form>
 
 {% endblock %}
 
