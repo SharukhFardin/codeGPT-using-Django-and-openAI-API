@@ -3,7 +3,41 @@
 
 {% block content%}
 
-<h1>Hello!!</h1>
+
+{% if code %}
+
+<pre>
+	<code class=' line-numbers language-{{lang}}'>
+		{{code}}
+	</code>
+</pre>
+<br/><br/>
+
+<form method=POST action="{% url 'home' %}">
+	{% csrf_token %}
+
+  <div class="form-group">
+    <textarea class="form-control" name="code" placeholder="Fix my code" rows="3">{{ code }}</textarea>
+  </div>
+
+  <select class="form-control" name="lang">
+  	<option selected>Select Programming Language</option>
+
+  	{% for lang in lang_list %}
+  	<option value="{{ lang }}">{{ lang }}</option>
+  	{% endfor %}
+
+  </select>
+  <br/>
+  <button type="submit" class="btn btn-dark">Submit</button>
+
+</form>
+
+
+
+
+
+{% else %}
 
 <pre>
 	<code class=' line-numbers language-python'>
@@ -19,13 +53,20 @@
     <textarea class="form-control" name="code" placeholder="Fix my code" rows="3"></textarea>
   </div>
 
-  <select class="form-control">
-  	<option>Default select</option>
+  <select class="form-control" name="lang">
+  	<option selected>Select Programming Language</option>
+
+  	{% for lang in lang_list %}
+  	<option value="{{ lang }}">{{ lang }}</option>
+  	{% endfor %}
+
   </select>
   <br/>
   <button type="submit" class="btn btn-dark">Submit</button>
 
 </form>
+
+{% endif %}
 
 {% endblock %}
 
